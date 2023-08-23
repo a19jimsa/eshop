@@ -5,9 +5,8 @@
         class="p-3 border d-flex flex-column justify-content-between"
         style="height: 300px"
       >
-        <div>{{ product.image }}</div>
         <div>
-          <a routerLink="/product/{{ product.id }}">{{ product.text }}</a>
+          <a routerLink="/product/{{ product.id }}">{{ product.name }}</a>
         </div>
         <div class="d-flex justify-content-between align-items-center">
           {{ product.price }} kr<button class="btn btn-primary">Köp</button>
