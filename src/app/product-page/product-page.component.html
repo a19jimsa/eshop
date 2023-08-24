@@ -1,13 +1,14 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-sm-5">
+      <img [src]="imageSrc" alt="bajs" />
       <button type="button" (click)="goBack()">Go back</button>
     </div>
     <div class="col-sm-7">
       <h1>{{ product?.name }}</h1>
       <h3>{{ product?.inventory_amount }} st</h3>
       <span class="display-6">{{ product?.price }} kr</span>
-      <button class="btn btn-primary">KÖP</button>
+      <button class="btn btn-success">KÖP</button>
       <h2>Beskrivning</h2>
       <div>{{ product?.description }}</div>
     </div>
