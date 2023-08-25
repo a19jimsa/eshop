@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row col-lg-12">
+    <h1>Kassa</h1>
+    <h3 *ngIf="cartItems.length === 0; else name">Varukorgen är tom!</h3>
+    <ng-template #name>
+      <h3>Produkter</h3>
+      <div *ngFor="let item of cartItems; let i = index" class="border">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <img
+              [src]="item.thumbnail"
+              style="width: 50px; height: auto"
+              alt=""
+            />
+          </div>
+          <div>{{ item.inventory_amount }}</div>
+          <div>{{ item.name }}</div>
+          <div>{{ item.price }} kr</div>
+          <div><button (click)="remove(i)">Ta bort</button></div>
+        </div>
+      </div>
+      <div>Total kostnad: {{ getPrice() }} kr</div>
+      <button class="btn btn-primary">Betala</button>
+    </ng-template>
+  </div>
+</div>

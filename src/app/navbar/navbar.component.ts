@@ -8,4 +8,11 @@ import { faShoppingBasket } from '@fortawesome/free-solid-svg-icons';
 })
 export class NavbarComponent {
   cart = faShoppingBasket;
+  isOpen: boolean = false;
+
+  constructor() {}
+
+  onChart(): void {
+    this.isOpen = !this.isOpen;
+  }
 }

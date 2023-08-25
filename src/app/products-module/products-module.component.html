@@ -1,15 +1,20 @@
 <div class="container text-center mt-5">
   <div class="row g-2">
     <div class="col-3" *ngFor="let product of products; let i = index">
-      <div
-        class="p-3 border d-flex flex-column justify-content-between"
-        style="height: 300px"
-      >
+      <div class="p-3 border d-flex flex-column justify-content-between">
+        <div>
+          <img [src]="product.thumbnail" [alt]="product.id" />
+        </div>
         <div>
           <a routerLink="/product/{{ product.id }}">{{ product.name }}</a>
         </div>
         <div class="d-flex justify-content-between align-items-center">
-          {{ product.price }} kr<button class="btn btn-primary">Köp</button>
+          {{ product.price }} kr<button
+            class="btn btn-primary"
+            (click)="addToChart(product)"
+          >
+            Köp
+          </button>
         </div>
       </div>
     </div>

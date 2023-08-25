@@ -1,16 +1,20 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-sm-5">
-      <img [src]="imageSrc" alt="bajs" />
+    <div class="col-sm-8">
+      <img [src]="product.thumbnail" alt="bajs" width="400px" height="auto" />
+      <h2>Beskrivning</h2>
+      <div>{{ product.description }}</div>
       <button type="button" (click)="goBack()">Go back</button>
     </div>
-    <div class="col-sm-7">
-      <h1>{{ product?.name }}</h1>
-      <h3>{{ product?.inventory_amount }} st</h3>
-      <span class="display-6">{{ product?.price }} kr</span>
-      <button class="btn btn-success">KÖP</button>
-      <h2>Beskrivning</h2>
-      <div>{{ product?.description }}</div>
+    <div class="col-sm-4 border">
+      <h1>{{ product.name }}</h1>
+      <h3>{{ product.inventory_amount }} st i lager</h3>
+      <div class="display-6">{{ product.price }} kr</div>
+      <a
+        class="w-100 btn-lg btn btn-primary input-block-level"
+        (click)="addToChart()"
+        >KÖP</a
+      >
     </div>
   </div>
   <div class="row"></div>

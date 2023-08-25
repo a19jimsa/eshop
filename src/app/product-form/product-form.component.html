@@ -1,44 +1,42 @@
 <form (ngSubmit)="createProduct()" [formGroup]="productForm">
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Namn</label>
+    <label for="name" class="form-label">Namn</label>
     <input
-      type="email"
+      type="text"
       class="form-control"
-      id="exampleFormControlInput1"
-      placeholder="name@example.com"
+      id="name"
+      placeholder=""
       formControlName="name"
     />
   </div>
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Pris</label>
+    <label for="price" class="form-label">Pris</label>
     <input
-      type="email"
+      type="number"
       class="form-control"
-      id="exampleFormControlInput1"
-      placeholder="name@example.com"
-      value="1"
+      id="price"
+      placeholder="1"
       formControlName="price"
     />
   </div>
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Lagersaldo</label>
+    <label for="inventory_amount" class="form-label">Lagersaldo</label>
     <input
-      type="email"
+      type="number"
       class="form-control"
-      id="exampleFormControlInput1"
-      placeholder="name@example.com"
-      value="1"
+      id="inventory_amount"
+      placeholder=""
       formControlName="inventory_amount"
     />
   </div>
   <div class="mb-3">
-    <label for="exampleFormControlTextarea1" class="form-label"
+    <label for="description" class="form-label"
       >Beskrivning</label
     >
     <textarea
       class="form-control"
-      id="exampleFormControlTextarea1"
-      rows="3"
+      id="description"
+      rows="4"
       formControlName="description"
     ></textarea>
   </div>

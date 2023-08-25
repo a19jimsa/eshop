@@ -11,6 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ChartComponent } from './chart/chart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ProductPageComponent,
     DashboardComponent,
     ProductFormComponent,
+    ChartComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
-import { Image } from '../image';
+import { CartService } from '../cart.service';
 
 @Component({
   selector: 'app-product-page',
@@ -11,34 +11,41 @@ import { Image } from '../image';
   styleUrls: ['./product-page.component.css'],
 })
 export class ProductPageComponent implements OnInit {
-  product?: Product;
-  images!: Image[];
-  imageSrc: String = '';
+  product!: Product;
 
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private service: ProductService
+    private service: ProductService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.getProduct(id).subscribe((response) => {
-      console.log(response);
       this.product = response;
-      this.images = this.product.images;
-      this.getImage();
+      this.product.thumbnail =
+        'http://localhost:8080/api/product/images/' +
+        this.product.images[0].url;
     });
   }
 
-  getImage() {
-    this.service.getImage(this.images[0].url).subscribe((response) => {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.imageSrc = e.target.result;
-      };
-      reader.readAsDataURL(response);
-    });
+  addToChart(): void {
+    if (!this.cartService.isProductInCart(this.product)) {
+      const currentCart = this.cartService.getCartItems();
+      this.product.inventory_amount = 1;
+      const updateCart = [...currentCart, this.product];
+      this.cartService.updateCartItems(updateCart);
+    } else {
+      let currentCart = this.cartService.getCartItems();
+      for (let i = 0; i < currentCart.length; i++) {
+        if (currentCart[i].id === this.product.id) {
+          currentCart[i].inventory_amount++;
+        }
+      }
+      const updateCart = [...currentCart];
+      this.cartService.updateCartItems(updateCart);
+    }
   }
 
   goBack(): void {

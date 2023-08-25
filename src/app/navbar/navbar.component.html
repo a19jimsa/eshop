@@ -1,5 +1,5 @@
-<nav class="navbar navbar-dark navbar-expand-lg bg-primary">
-  <div class="container-fluid">
+<nav class="navbar navbar-dark navbar-expand-sm bg-primary">
+  <div class="container">
     <button
       class="navbar-toggler"
       type="button"
@@ -12,21 +12,26 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand" href="#">Hidden brand</a>
+      <a class="navbar-brand">Hidden brand</a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" aria-current="page" routerLink="">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" routerLink="">Link</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="dashboard">Dashboard</a>
         </li>
       </ul>
       <div>
-        <button><fa-icon [icon]="cart"></fa-icon></button>
-        <button>Till kassan</button>
+        <button (click)="isOpen = !isOpen">
+          <fa-icon [icon]="cart"></fa-icon>
+        </button>
+        <div class="absolute" *ngIf="isOpen">
+          <app-chart></app-chart>
+        </div>
+        <button routerLink="/checkout">Till kassan</button>
       </div>
     </div>
   </div>

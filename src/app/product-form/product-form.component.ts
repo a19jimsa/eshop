@@ -3,7 +3,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
 import { Product } from '../product';
-import { Image } from '../image';
 
 @Component({
   selector: 'app-product-form',
@@ -31,6 +30,6 @@ export class ProductFormComponent implements OnInit {
     var newImage = { url: url };
     this.service
       .createProduct(newProduct, newImage)
-      .subscribe((response) => console.log(response));
+      .subscribe((response) => this.route.navigate(['/']));
   }
 }
