@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Product } from './product';
 import { Observable } from 'rxjs';
+import { Category } from './category';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,9 @@ export class ProductService {
       'http://localhost:8080/api/product/images/' + filename,
       { responseType: 'blob' }
     );
+  }
+
+  getCategories(): Observable<Category[]> {
+    return this.http.get<Category[]>('http://localhost:8080/api/categories');
   }
 }

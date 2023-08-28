@@ -8,4 +8,5 @@ export interface Product {
   price: number;
   images: Image[];
   thumbnail: string;
+  category_id: number;
 }

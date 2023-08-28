@@ -30,9 +30,17 @@
     />
   </div>
   <div class="mb-3">
-    <label for="description" class="form-label"
-      >Beskrivning</label
+    <label for="category">Välj kategori:</label>
+    <select
+      class="form-select form-select-lg"
+      aria-label=".form-select-lg example"
+      formControlName="category_id"
     >
+      <option value="1">1</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="description" class="form-label">Beskrivning</label>
     <textarea
       class="form-control"
       id="description"
