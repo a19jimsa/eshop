@@ -1,3 +1,4 @@
+import { Category } from './category';
 import { Image } from './image';
 
 export interface Product {
@@ -8,5 +9,5 @@ export interface Product {
   price: number;
   images: Image[];
   thumbnail: string;
-  category_id: number;
+  category: Category;
 }

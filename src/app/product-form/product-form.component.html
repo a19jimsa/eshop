@@ -49,13 +49,23 @@
     ></textarea>
   </div>
   <div class="mb-3">
-    <label for="formFileLg" class="form-label">Large file input example</label>
-    <input
-      class="form-control form-control-lg"
-      id="formFileLg"
-      type="file"
-      formControlName="url"
-    />
+    <div formArrayName="images">
+      <div *ngFor="let item of images.controls; let i = index">
+        <div [formGroupName]="i">
+          <label for="{{ i }}">Url {{ i + 1 }}</label>
+          <input formControlName="url" placeholder="url" class="form-control" />
+          <button (click)="removeItem(i)">Remove</button>
+        </div>
+      </div>
+      <button
+        (click)="addItem()"
+        type="button"
+        role="button"
+        class="btn btn-primary"
+      >
+        Add Item
+      </button>
+    </div>
   </div>
   <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">
     Submit

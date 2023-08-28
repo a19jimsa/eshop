@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
 import { Product } from '../product';
@@ -13,32 +19,46 @@ import { Category } from '../category';
 export class ProductFormComponent implements OnInit {
   categories: Category[] = new Array();
 
-  productForm: FormGroup = new FormGroup({
-    name: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    price: new FormControl('', Validators.required),
-    inventory_amount: new FormControl('', Validators.required),
-    url: new FormControl('', Validators.required),
-    category_id: new FormControl('', Validators.required),
+  productForm = this.fb.group({
+    name: ['', Validators.required],
+    description: ['', Validators.required],
+    price: ['', Validators.required],
+    inventory_amount: ['', Validators.required],
+    category_id: ['', Validators.required],
+    images: this.fb.array([]),
   });
 
-  constructor(private service: ProductService, private route: Router) {}
+  constructor(
+    private service: ProductService,
+    private route: Router,
+    private fb: FormBuilder
+  ) {}
+
+  get images() {
+    return this.productForm.get('images') as FormArray;
+  }
+
+  addItem() {
+    const newImage = this.fb.group({
+      url: '',
+    });
+    this.images.push(newImage);
+  }
+
+  removeItem(i: number): void {
+    this.images.removeAt(i);
+  }
 
   ngOnInit(): void {
-    this.getCategories();
+    //this.getCategories();
   }
 
   createProduct(): void {
     var product = JSON.stringify(this.productForm.value);
     var newProduct: Product = JSON.parse(product);
-    newProduct.category_id = 1;
-    console.log(newProduct);
-    var url: String = this.productForm.value['url'];
-    url = url.substring(url.lastIndexOf('\\') + 1, url.length);
-    var newImage = { url: url };
     this.service
-      .createProduct(newProduct, newImage)
-      .subscribe((response) => this.route.navigate(['/']));
+      .createProduct(newProduct)
+      .subscribe((response) => console.log(response));
   }
 
   getCategories() {
