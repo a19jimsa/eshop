@@ -8,6 +8,5 @@ export interface Product {
   inventory_amount: number;
   price: number;
   images: Image[];
-  thumbnail: string;
   category: Category;
 }

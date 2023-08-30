@@ -1,10 +1,15 @@
-<div class="container text-center mt-5">
-  <div class="row g-2">
-    <div class="col-3" *ngFor="let product of products; let i = index">
-      <div class="p-3 border d-flex flex-column justify-content-between">
-        <div>
-          <img [src]="product.thumbnail" [alt]="product.id" />
-        </div>
+<div class="container text-center mt-5" *ngIf="!isLoading">
+  <div class="row">
+    <div class="col-4 card" *ngFor="let product of products; let i = index">
+      <div
+        class="p-3 d-flex flex-column align-items-stretch justify-content-between"
+        style="height: 100%"
+      >
+        <img
+          [src]="getThumbnail(product)"
+          [alt]="product.id"
+          class="object-fit-sm-contain rounded"
+        />
         <div>
           <a routerLink="/product/{{ product.id }}">{{ product.name }}</a>
         </div>

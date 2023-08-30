@@ -1,0 +1,95 @@
+<div class="card col-5 m-auto border rounded p-3">
+  {{ checkoutForm.value | json }}
+  <form (ngSubmit)="addOrder()" [formGroup]="checkoutForm">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Förnamn</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        placeholder=""
+        formControlName="firstName"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Efternamn</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        placeholder=""
+        formControlName="lastName"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Mobilnummer</label>
+      <input
+        type="text"
+        class="form-control"
+        id="phone"
+        placeholder=""
+        formControlName="phone"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        id="phonenumber"
+        placeholder=""
+        formControlName="email"
+      />
+    </div>
+    <div formGroupName="address">
+      <div class="mb-3">
+        <label for="streetname" class="form-label">Gatunamn</label>
+        <input
+          type="text"
+          class="form-control"
+          id="streetname"
+          placeholder=""
+          formControlName="streetname"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="zipcode" class="form-label">Postnummer</label>
+        <input
+          type="text"
+          class="form-control"
+          id="zipcode"
+          placeholder=""
+          formControlName="zipcode"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="city" class="form-label">Stad</label>
+        <input
+          type="text"
+          class="form-control"
+          id="city"
+          placeholder=""
+          formControlName="city"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="state" class="form-label">Land</label>
+        <input
+          type="text"
+          class="form-control"
+          id="state"
+          placeholder=""
+          formControlName="state"
+        />
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      value="submit"
+      [disabled]="!checkoutForm.valid"
+    >
+      Slutför köp
+    </button>
+  </form>
+</div>

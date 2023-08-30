@@ -14,6 +14,7 @@ export class ProductsModuleComponent implements OnInit {
   images: Image[] = new Array();
   imageSrc: string = '';
   amount: number = 0;
+  isLoading: boolean = true;
 
   constructor(
     private service: ProductService,
@@ -23,11 +24,7 @@ export class ProductsModuleComponent implements OnInit {
   ngOnInit(): void {
     this.service.getAllProducts().subscribe((response: Product[]) => {
       this.products = response;
-      for (let i = 0; i < this.products.length; i++) {
-        this.products[i].thumbnail =
-          'http://localhost:8080/api/product/images/' +
-          this.products[i].images[0].url;
-      }
+      this.isLoading = false;
     });
   }
 
@@ -47,5 +44,10 @@ export class ProductsModuleComponent implements OnInit {
       const updateCart = [...currentCart];
       this.cartService.updateCartItems(updateCart);
     }
+  }
+
+  getThumbnail(product: Product) {
+    console.log(product);
+    return 'http://localhost:8080/api/product/images/' + product.images[0].url;
   }
 }

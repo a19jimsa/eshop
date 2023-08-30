@@ -1,4 +1,5 @@
 <form (ngSubmit)="createProduct()" [formGroup]="productForm">
+  {{ productForm.value | json }}
   <div class="mb-3">
     <label for="name" class="form-label">Namn</label>
     <input
@@ -31,13 +32,20 @@
   </div>
   <div class="mb-3">
     <label for="category">Välj kategori:</label>
-    <select
-      class="form-select form-select-lg"
-      aria-label=".form-select-lg example"
-      formControlName="category_id"
-    >
-      <option value="1">1</option>
-    </select>
+    <div formGroupName="category">
+      <select
+        class="form-select form-select-lg"
+        aria-label=".form-select-lg example"
+        formControlName="id"
+      >
+        <option
+          *ngFor="let category of categories; let i = index"
+          value="{{ category.id }}"
+        >
+          {{ category.name }}
+        </option>
+      </select>
+    </div>
   </div>
   <div class="mb-3">
     <label for="description" class="form-label">Beskrivning</label>
@@ -51,10 +59,22 @@
   <div class="mb-3">
     <div formArrayName="images">
       <div *ngFor="let item of images.controls; let i = index">
-        <div [formGroupName]="i">
-          <label for="{{ i }}">Url {{ i + 1 }}</label>
-          <input formControlName="url" placeholder="url" class="form-control" />
-          <button (click)="removeItem(i)">Remove</button>
+        <div [formGroupName]="i" class="mb-3">
+          <label for="{{ i }}" class="form-label">Url {{ i + 1 }}</label>
+          <input
+            formControlName="url"
+            type="file"
+            placeholder="url"
+            class="form-control"
+          />
+          <button
+            (click)="removeItem(i)"
+            type="button"
+            role="button"
+            class="btn btn-danger"
+          >
+            Remove
+          </button>
         </div>
       </div>
       <button
@@ -63,7 +83,7 @@
         role="button"
         class="btn btn-primary"
       >
-        Add Item
+        Add Image
       </button>
     </div>
   </div>

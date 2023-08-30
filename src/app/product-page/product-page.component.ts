@@ -12,6 +12,7 @@ import { CartService } from '../cart.service';
 })
 export class ProductPageComponent implements OnInit {
   product!: Product;
+  isLoading: boolean = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,9 +25,7 @@ export class ProductPageComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.getProduct(id).subscribe((response) => {
       this.product = response;
-      this.product.thumbnail =
-        'http://localhost:8080/api/product/images/' +
-        this.product.images[0].url;
+      this.isLoading = false;
     });
   }
 

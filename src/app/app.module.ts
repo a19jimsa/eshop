@@ -13,6 +13,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ChartComponent } from './chart/chart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { OrderComponent } from './order/order.component';
+import { CheckoutFormComponent } from './checkout-form/checkout-form.component';
+import { CustomerOrdersComponent } from './customer-orders/customer-orders.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,10 @@ import { CheckoutComponent } from './checkout/checkout.component';
     ProductFormComponent,
     ChartComponent,
     CheckoutComponent,
+    OrderComponent,
+    CheckoutFormComponent,
+    CustomerOrdersComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

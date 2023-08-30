@@ -26,4 +26,10 @@ export class ProductService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>('http://localhost:8080/api/categories');
   }
+
+  getImages(id: number): Observable<Image[]> {
+    return this.http.get<Image[]>(
+      'http://localhost:8080/api/product/images?id=' + id
+    );
+  }
 }

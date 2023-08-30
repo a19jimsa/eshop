@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <div *ngFor="let order of orders; let i = index">
+      <div class="d-flex col-lg-12 justify-content-between" routerLink="/">
+        <div>{{ order.id }}</div>
+        <div>{{ order.customer.firstName }} {{ order.customer.lastName }}</div>
+        <div>{{ order.date }}</div>
+        <div>Ej behandlad</div>
+      </div>
+    </div>
+  </div>
+</div>

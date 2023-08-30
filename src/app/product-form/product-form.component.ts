@@ -24,7 +24,7 @@ export class ProductFormComponent implements OnInit {
     description: ['', Validators.required],
     price: ['', Validators.required],
     inventory_amount: ['', Validators.required],
-    category_id: ['', Validators.required],
+    category: this.fb.group({ id: 0 }),
     images: this.fb.array([]),
   });
 
@@ -50,7 +50,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.getCategories();
+    this.getCategories();
   }
 
   createProduct(): void {

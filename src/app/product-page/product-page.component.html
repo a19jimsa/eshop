@@ -1,7 +1,13 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="!isLoading">
   <div class="row">
     <div class="col-sm-8">
-      <img [src]="product.thumbnail" alt="bajs" width="400px" height="auto" />
+      <div *ngFor="let image of product.images; let i = index">
+        <img
+          src="http://localhost:8080/api/product/images/{{ image.url }}"
+          alt="bajs"
+          height="auto"
+        />
+      </div>
       <h2>Beskrivning</h2>
       <div>{{ product.description }}</div>
       <button type="button" (click)="goBack()">Go back</button>
