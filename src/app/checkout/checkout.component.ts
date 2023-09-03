@@ -1,36 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 import { Product } from '../product';
 import { Customer } from '../customer';
+import { OrderItem } from '../order-item';
 import { OrderService } from '../order.service';
-import { Order } from '../order';
+import { ProductOrder } from '../product-order';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css'],
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnDestroy {
   cartItems: Product[] = new Array();
   totalPrice: number = 0;
+  subscription!: Subscription;
+  cartSubscription!: Subscription;
 
-  constructor(
-    private cartService: CartService,
-    private orderService: OrderService
-  ) {}
+  constructor(private cartService: CartService, private order: OrderService) {}
 
   ngOnInit(): void {
-    this.cartService.cartItems$.subscribe((items) => {
-      this.cartItems = items;
-    });
+    this.cartSubscription = this.subscription =
+      this.cartService.cartItems$.subscribe((items) => {
+        this.cartItems = items;
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    this.cartSubscription.unsubscribe();
   }
 
   recivedData(customer: Customer) {
-    console.log(this.cartItems);
-    console.log(customer);
-    let order = { products: this.cartItems, customer: customer };
-    this.orderService
-      .addOrder(order)
+    let customerProduct: ProductOrder = {
+      customer: customer,
+      productList: this.cartItems,
+    };
+    this.subscription = this.order
+      .addOrder(customerProduct)
       .subscribe((response) => console.log(response));
   }
 

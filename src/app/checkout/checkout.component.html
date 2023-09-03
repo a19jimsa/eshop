@@ -16,7 +16,9 @@
           <div>{{ item.inventory_amount }} st</div>
           <div>{{ item.name }}</div>
           <div>{{ item.price }} kr</div>
-          <div><button (click)="remove(i)">Ta bort</button></div>
+          <div>
+            <button class="btn btn-primary" (click)="remove(i)">Ta bort</button>
+          </div>
         </div>
       </div>
       <div>Total kostnad: {{ getPrice() }} kr</div>

@@ -1,12 +1,23 @@
 <div class="container">
   <div class="row">
-    <div *ngFor="let order of orders; let i = index">
-      <div class="d-flex col-lg-12 justify-content-between" routerLink="/">
-        <div>{{ order.id }}</div>
-        <div>{{ order.customer.firstName }} {{ order.customer.lastName }}</div>
-        <div>{{ order.date }}</div>
-        <div>Ej behandlad</div>
-      </div>
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Ordernummer</th>
+          <th>Beställare</th>
+          <th>Orderdatum</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let order of orders; let i = index"
+          class="text-primary bg-light"
+          routerLink="/admin/order/{{ order.id }}"
+        >
+          <td>{{ order.id }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

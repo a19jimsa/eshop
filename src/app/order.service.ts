@@ -14,4 +14,8 @@ export class OrderService {
   getOrders() {
     return this.http.get<Order[]>('http://localhost:8080/api/orders');
   }
+
+  getOrder(id: number) {
+    return this.http.get<Order>('http://localhost:8080/api/order/' + id);
+  }
 }
