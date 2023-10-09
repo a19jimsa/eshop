@@ -1,22 +1,36 @@
-<nav class="navbar navbar-dark navbar-expand-sm bg-primary">
-  <div class="container">
-    <button class="navbar-toggler" type="button">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <a class="navbar-brand">Hidden brand</a>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="">Home</a>
-        </li>
-      </ul>
-      <div>
-        <button (click)="isOpen = !isOpen">
-          <fa-icon [icon]="cart"></fa-icon>
-        </button>
-        <button routerLink="/checkout">Till kassan</button>
+<header>
+  <nav class="navbar navbar-dark navbar-expand-sm bg-primary z-3 shadow-sm">
+    <div class="container">
+      <button class="navbar-toggler" type="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="navbar-brand">Hidden brand</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="">Home</a>
+          </li>
+          <li
+            class="nav-item"
+            *ngFor="let category of rootCategories; let i = index"
+          >
+            <a
+              class="nav-link"
+              routerLink="category/{{ category.categoryName }}"
+              >{{ category.categoryName }}</a
+            >
+          </li>
+        </ul>
+        <div>
+          <button (click)="isOpen = !isOpen">
+            <fa-icon [icon]="cart"></fa-icon>
+          </button>
+          <button routerLink="/checkout">Till kassan</button>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
-<app-dialog-box *ngIf="isOpen" (eventEmitter)="isOpen = $event"></app-dialog-box>
+  </nav>
+</header>
+<app-dialog-box *ngIf="isOpen" (eventEmitter)="isOpen = $event">
+  <app-chart></app-chart>
+</app-dialog-box>

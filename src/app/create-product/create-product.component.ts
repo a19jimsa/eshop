@@ -1,22 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormArray,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { ProductService } from '../product.service';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { Validators, FormBuilder, FormArray } from '@angular/forms';
 import { Product } from '../product';
 import { Category } from '../category';
+import { ProductService } from '../product.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css'],
+  selector: 'app-create-product',
+  templateUrl: './create-product.component.html',
+  styleUrls: ['./create-product.component.css'],
 })
-export class ProductFormComponent implements OnInit {
+export class CreateProductComponent {
   categories: Category[] = new Array();
 
   productForm = this.fb.group({
@@ -50,7 +44,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.getCategories();
   }
 
   createProduct(): void {
@@ -61,4 +55,10 @@ export class ProductFormComponent implements OnInit {
       .subscribe((response) => console.log(response));
   }
 
+  getCategories() {
+    this.service.getCategories().subscribe((response) => {
+      this.categories = response;
+      console.log(response);
+    });
+  }
 }

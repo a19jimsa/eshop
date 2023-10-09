@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
 import { Image } from '../image';
 import { CartService } from '../cart.service';
+import { Category } from '../category';
 
 @Component({
   selector: 'app-products-module',
@@ -10,6 +11,7 @@ import { CartService } from '../cart.service';
   styleUrls: ['./products-module.component.css'],
 })
 export class ProductsModuleComponent implements OnInit {
+  @Input() item: string = '';
   products: Product[] = new Array();
   images: Image[] = new Array();
   imageSrc: string = '';
@@ -22,10 +24,12 @@ export class ProductsModuleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.service.getAllProducts().subscribe((response: Product[]) => {
-      this.products = response;
-      this.isLoading = false;
-    });
+    this.service
+      .getProductsInCategory(this.item)
+      .subscribe((response: Product[]) => {
+        this.products = response;
+        this.isLoading = false;
+      });
   }
 
   addToChart(product: Product): void {

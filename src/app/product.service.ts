@@ -32,4 +32,9 @@ export class ProductService {
       'http://localhost:8080/api/product/images?id=' + id
     );
   }
+  getProductsInCategory(name: string): Observable<Product[]> {
+    return this.http.get<Product[]>(
+      'http://localhost:8080/api/category/' + name
+    );
+  }
 }

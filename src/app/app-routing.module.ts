@@ -8,19 +8,21 @@ import { CustomerOrdersComponent } from './customer-orders/customer-orders.compo
 import { AdminComponent } from './admin/admin.component';
 import { OrderComponent } from './order/order.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
+import { CreateProductComponent } from './create-product/create-product.component';
+import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
-  { path: '', component: ProductsModuleComponent },
+  { path: '', component: AdminComponent },
   { path: 'product/:id', component: ProductPageComponent },
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'admin', component: AdminLoginComponent },
+  { path: 'category/:name', component: CategoryComponent },
   {
-    path: 'dashboard',
-    component: AdminComponent,
+    path: 'admin/dashboard',
+    component: DashboardComponent,
     children: [
       { path: 'orders', component: CustomerOrdersComponent },
       { path: 'order/:id', component: OrderComponent },
+      { path: 'create-product', component: CreateProductComponent },
     ],
   },
 ];

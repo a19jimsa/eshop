@@ -19,6 +19,8 @@ import { CustomerOrdersComponent } from './customer-orders/customer-orders.compo
 import { AdminComponent } from './admin/admin.component';
 import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
+import { CreateProductComponent } from './create-product/create-product.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { DialogBoxComponent } from './dialog-box/dialog-box.component';
     AdminComponent,
     AdminLoginComponent,
     DialogBoxComponent,
+    CreateProductComponent,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,

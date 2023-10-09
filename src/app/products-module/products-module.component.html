@@ -1,14 +1,19 @@
 <div class="container text-center mt-5" *ngIf="!isLoading">
   <div class="row">
     <div class="col-4 card" *ngFor="let product of products; let i = index">
-      <img src="..." class="card-img-top" alt="..." />
+      <div *ngFor="let image of product.images; let i = index">
+        <img
+          class="card-img-top"
+          src="http://localhost:8080/api/product/images/{{ image.url }}"
+        />
+      </div>
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">{{ product.name }}</h5>
+        <p class="card-text">{{ product.price }} kr</p>
+        <a routerLink="/product/{{ product.id }}">{{ product.name }}</a>
+        <a type="button" class="btn btn-primary" (click)="addToChart(product)"
+          >KÖP</a
+        >
       </div>
     </div>
   </div>
