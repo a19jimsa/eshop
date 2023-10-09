@@ -24,12 +24,10 @@ export class ProductsModuleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.service
-      .getProductsInCategory(this.item)
-      .subscribe((response: Product[]) => {
-        this.products = response;
-        this.isLoading = false;
-      });
+    this.service.getAllProducts().subscribe((response: Product[]) => {
+      this.products = response;
+      this.isLoading = false;
+    });
   }
 
   addToChart(product: Product): void {

@@ -12,12 +12,12 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { CategoryComponent } from './category/category.component';
 
 const routes: Routes = [
-  { path: '', component: AdminComponent },
+  { path: '', component: ProductsModuleComponent },
   { path: 'product/:id', component: ProductPageComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'category/:name', component: CategoryComponent },
   {
-    path: 'admin/dashboard',
+    path: 'admin',
     component: DashboardComponent,
     children: [
       { path: 'orders', component: CustomerOrdersComponent },

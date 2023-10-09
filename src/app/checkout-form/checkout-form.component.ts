@@ -37,6 +37,7 @@ export class CheckoutFormComponent implements OnInit {
     let customer = JSON.stringify(this.checkoutForm.value);
     let newCustomer: Customer = JSON.parse(customer);
     this.customerService.addCustomer(newCustomer).subscribe((response) => {
+      console.log(response);
       this.eventEmitter.emit(response);
     });
   }
